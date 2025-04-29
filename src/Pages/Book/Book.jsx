@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Book = ({singleBook}) => {
-console.log(singleBook)
+// console.log(singleBook)
     const {tags , bookId,publisher ,yearOfPublishing , category} = singleBook;
     return (
 <Link to={`/bookDetails/${bookId}`}>

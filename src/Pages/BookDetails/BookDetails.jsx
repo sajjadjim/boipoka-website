@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToStoredDB } from '../../Utilities/addtoDB';
 
 const BookDetails = () => {
     const {id} = useParams();
@@ -7,8 +8,14 @@ const BookDetails = () => {
     const bookID = parseInt(id)
     const data = useLoaderData()
     const singleBook = data.find(book=> book.bookId === bookID)
-     console.log(singleBook)
+    //  console.log(singleBook)
     const {bookName , review,tags ,image ,totalPages, yearOfPublishing , rating , publisher,author,category} = singleBook;
+
+    // Handle Mark as button
+    const handleMarkAsRead = (id)=>{
+  addToStoredDB(id)
+    }
+
     return (
 
         <div>
@@ -26,7 +33,7 @@ const BookDetails = () => {
         {review}
       </p>
       <div className='flex gap-5 border-b-1 pb-2'><span className=' font-semibold mb-2'>Tags : </span>{
-        tags.map((tag) =><p className='text-green-600 font-bold'>#{tag}</p>)
+        tags.map((tag , index) =><p key={index} className='text-green-600 font-bold'>#{tag}</p>)
         }</div>
         <div className='my-4'>
             <p>Number of Pages : <span className='font-bold'>{totalPages}</span></p>
@@ -35,8 +42,8 @@ const BookDetails = () => {
             <p>Rating : <span className='font-bold'>{rating}</span></p>
         </div>
         <div className='flex gap-5'>
-        <button className='btn'>Read</button>
-        <button className="btn btn-primary">Wishlist</button>
+        <button onClick={()=>handleMarkAsRead(id)} className='btn'>Mark as read</button>
+        <button className="btn btn-primary">Add to Wishlist</button>
         </div>
     </div>
   </div>

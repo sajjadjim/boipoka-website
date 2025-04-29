@@ -7,6 +7,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import ABout from "../Pages/About/ABout";
 import BookDetails from "../Pages/BookDetails/BookDetails";
+import ReadList from "../Pages/ReadList/ReadList";
 
   
 export const router = createBrowserRouter([
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
       {
         path:'about',
         Component:ABout
+      },
+      {
+path:'readList',
+loader: () =>
+  fetch("https://raw.githubusercontent.com/sajjadjim/JSON-Data-Folder/refs/heads/main/bookData.json")
+  .then(res => res.json())
+  ,
+Component:ReadList
       },
       {
         path:'/bookDetails/:id',

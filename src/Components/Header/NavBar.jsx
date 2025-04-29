@@ -5,6 +5,7 @@ const NavBar = () => {
   const links = <>
   <Link to='/'><li className='m-2'>Home</li></Link>
   <Link to='/about'><li className='m-2'>About</li></Link>
+  <Link to='/readList'>Read List</Link>
   </>
     return (
       <div>
@@ -27,7 +28,7 @@ const NavBar = () => {
   </li>
 </ul>
 </div>
-<a className="btn btn-ghost text-xl">Book Vibe</a>
+<Link to='/'>Book Vibe📚</Link>
 </div>
 <div className="navbar-center hidden lg:flex">
 <ul className="menu menu-horizontal px-1">
@@ -35,7 +36,7 @@ const NavBar = () => {
 <li>
   <details>
     <summary>Listed Book</summary>
-    <ul className="p-2">
+    <ul className="p-2 m-2">
       
       {
         links
