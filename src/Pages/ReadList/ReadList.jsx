@@ -7,7 +7,7 @@ import SingleReadBook from './SingleReadBook';
 const ReadList = () => {
     const [readList , setReadList] = useState([]);
     const data = useLoaderData()
-    console.log(data)
+    // console.log(data)
  useEffect(()=>{
     const storeBookData = getStoredBook();
     // console.log(storeBookData)
@@ -15,11 +15,33 @@ const ReadList = () => {
     // console.log(convertedBookData)
     const myReadList =  data.filter(book =>convertedBookData.includes(book.bookId))
     setReadList(myReadList)
+},[])
 
-}, [])
+const [sort , setSort] =useState('')
+const handleSort = (type) =>{
+    setSort(type)
+    if(type === "pages")
+        {
+const sortedByPages = [...readList].sort((a,b) => a.totalPages- b.totalPages)
+setReadList(sortedByPages)    
+}
+// Here  Sort by Rating  
+if(type === "ratings")
+    {
+const sortedByRatings = [...readList].sort((a,b) => a.rating- b.rating)
+setReadList(sortedByRatings)    
+}
+}
 
     return (
         <div>
+            <details className="dropdown">
+  <summary className="btn m-1">sort by : {sort? sort :""}</summary>
+  <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a onClick={()=>{handleSort('pages')}}>pages</a></li>
+    <li><a  onClick={()=>{handleSort('ratings')}}>rating</a></li>
+  </ul>
+</details>
               <Tabs>
     <TabList>
       <Tab>Read Book List</Tab>

@@ -1,6 +1,10 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import { addToStoredDB } from '../../Utilities/addtoDB';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+import { ToastContainer, toast } from 'react-toastify';
 
 const BookDetails = () => {
     const {id} = useParams();
@@ -14,11 +18,19 @@ const BookDetails = () => {
     // Handle Mark as button
     const handleMarkAsRead = (id)=>{
   addToStoredDB(id)
+  Swal.fire({
+    title: "Mark as done ✅",
+    icon: "Done",
+    draggable: true
+  });
+  toast("Wow so easy!");
+
     }
 
     return (
 
         <div>
+           <ToastContainer />
             <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content flex-col lg:flex-row">
     <img

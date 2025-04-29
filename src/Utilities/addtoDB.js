@@ -18,7 +18,7 @@ const addToStoredDB = (id) => {
 
     if (storedBookData.includes(id)) {
         console.log("Data Store to the Local storage" , id)
-        alert("Already mark as Read Done ⚠️⚠️⚠️ ")
+        // alert("Already mark as Read Done ⚠️⚠️⚠️ ")
     }
     else {
         storedBookData.push(id);
